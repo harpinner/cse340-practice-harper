@@ -2,7 +2,7 @@ import { Router } from "express";
 import { addDemoHeaders } from '../middleware/demo/headers.js';
 import { catalogPage, courseDetailPage } from './catalog/catalog.js';
 import { homePage, aboutPage, demoPage, testErrorPage } from './index.js';
-
+import { facultyListPage, facultyDetailPage } from './faculty/faculty.js';
 
 
 const router = Router();
@@ -19,5 +19,9 @@ router.get('/demo', addDemoHeaders, demoPage);
 
 // Route to trigger a test error
 router.get('/test-error', testErrorPage);
+
+router.get('/faculty', facultyListPage);
+router.get('/faculty/:facultyId', facultyDetailPage);
+
 
 export default router;

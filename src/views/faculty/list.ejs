@@ -1,0 +1,9 @@
+<%- include('partials/header') %>
+    <h1>Faculty Directory</h1>
+    <ul>
+        <% facultyList.forEach(faculty => { %>
+            <li><a href="/faculty/<%= faculty.id %>"><%= faculty.name %></a></li>
+        <% }) %>
+    </ul>
+    
+<%- include('partials/footer') %>
