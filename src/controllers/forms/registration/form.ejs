@@ -1,0 +1,54 @@
+<%- include('../../partials/header') %>
+<main>
+    <h1><%= title %></h1>
+    <p>
+        Register for a new account by providing your information below. All fields are required and passwords must meet security requirements.
+    </p>
+
+    <form method="POST" action="/register" class="registration-form">
+        <!-- Name field -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" minlength="2" required placeholder="What is your name?">
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Please provide your email address.">
+        </div>
+
+        <!-- Email confirmation field -->
+        <div class="form-group">
+            <label for="emailConfirm">Confirm Email</label>
+            <input type="email" id="emailConfirm" name="emailConfirm" required placeholder="Please confirm your email address.">
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                minlength="8"
+                required
+                pattern="(?=.*[0-9])(?=.*[!@#$%^&*]).*"
+                placeholder="Must be at least 8 characters, include a number and special character"
+            >
+            <div class="help-text">Must be at least 8 characters with a number and special character</div>
+        </div>
+
+        <!-- Password confirmation field -->
+        <div class="form-group">
+            <label for="passwordConfirm">Confirm Password</label>
+            <input type="password" id="passwordConfirm" name="passwordConfirm" minlength="8" required placeholder="Confirm your password">
+        </div>
+
+        <!-- Submit button -->
+        <div class="form-group">
+            <button type="submit">Create Account</button>
+        </div>
+    </form>
+</main>
+<%- include('../../partials/footer') %>

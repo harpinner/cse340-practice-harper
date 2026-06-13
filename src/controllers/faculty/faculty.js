@@ -1,3 +1,5 @@
+import { getFacultyBySlug, getSortedFaculty } from '../../models/faculty/faculty.js';
+
 const facultyListPage = async (req, res) => {
     const validSortOptions = ['name', 'department', 'title'];
     const sortBy = validSortOptions.includes(req.query.sort) ? req.query.sort : 'department';

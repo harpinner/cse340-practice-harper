@@ -1,0 +1,67 @@
+
+import { getAllCourses, getCourseById, getSortedSections, getCoursesByDepartment } from '../../models/catalog/catalog.js';
+
+// Route handler for the course catalog list page
+const catalogPage = (req, res) => {
+    const coursesObj = getAllCourses();
+
+    // Convert to array for filtering
+    let courses = Object.values(coursesObj);
+
+    // Read filter params
+    const creditsFilter = req.query.credits ? parseInt(req.query.credits, 10) : null;
+    const professorFilter = req.query.professor ? req.query.professor.trim().toLowerCase() : null;
+
+    if (creditsFilter) {
+        courses = courses.filter(c => c.credits === creditsFilter);
+    }
+
+    if (professorFilter) {
+        courses = courses.filter(c => c.sections.some(s => s.professor.toLowerCase().includes(professorFilter)));
+    }
+
+    res.render('catalog', {
+        title: 'Course Catalog',
+        courses: courses,
+        filters: {
+            credits: req.query.credits || '',
+            professor: req.query.professor || ''
+        }
+    });
+};
+
+// Route handler for individual course detail pages
+const courseDetailPage = (req, res, next) => {
+    const courseId = req.params.courseId;
+    const course = getCourseById(courseId);
+
+    // If course doesn't exist, create 404 error
+    if (!course) {
+        const err = new Error(`Course ${courseId} not found`);
+        err.status = 404;
+        return next(err);
+    }
+
+    // Handle sorting if requested
+    const sortBy = req.query.sort || 'time';
+    const sortedSections = getSortedSections(course.sections, sortBy);
+
+    res.render('course-detail', {
+        title: `${course.id} - ${course.title}`,
+        course: { ...course, sections: sortedSections },
+        currentSort: sortBy
+    });
+};
+
+// Route handler to render courses grouped by department
+const catalogByDepartmentPage = (req, res) => {
+    const departments = getCoursesByDepartment();
+
+    res.render('catalog-by-department', {
+        title: 'Course Catalog - By Department',
+        departments: departments
+    });
+};
+export { catalogPage, courseDetailPage, catalogByDepartmentPage };
+
+
