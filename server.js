@@ -5,6 +5,7 @@ import { setupDatabase, testConnection } from './src/models/setup.js';
 
 // Import MVC components
 import routes from './src/controllers/routes.js';
+import flash from './src/middleware/flash.js';
 import { addLocalVariables } from './src/middleware/global.js';
 
 /**
@@ -86,6 +87,7 @@ app.use((req, res, next) => {
 });
 
 app.use(addLocalVariables);
+app.use(flash);
 
 /**
  * Routes

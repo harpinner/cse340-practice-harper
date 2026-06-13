@@ -1,14 +1,14 @@
-/**
- * Middleware to add custom headers for demo purposes.
- */
-const addDemoHeaders = (req, res, next) => {
-    // Add a header called 'X-Demo-Page' with value 'true'
+// Middleware to add demo headers for the /demo route
+let demoPageRequestCount = 0;
+
+export const addDemoHeaders = (req, res, next) => {
+    // Increment demo page counter and expose to templates
+    demoPageRequestCount += 1;
+    res.locals.demoPageRequestCount = demoPageRequestCount;
+
     res.setHeader('X-Demo-Page', 'true');
-
-    // Add a header called 'X-Middleware-Demo' with any message you want
-    res.setHeader('X-Middleware-Demo', 'This is a middleware demo header');
-
+    res.setHeader('X-Middleware-Demo', 'Test page for Demo!');
     next();
 };
 
-export { addDemoHeaders };
+export default addDemoHeaders;

@@ -1,28 +1,19 @@
-<%- include('partials/header') %>
-    <table>
-        <tr>
-            <th>Name</th>
-            <td><%= faculty.name %></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><%= faculty.email %></td>
-        </tr>
-        <tr>
-            <th>Department</th>
-            <td><%= faculty.department %></td>
-        </tr>
-        <tr>
-            <th>Office</th>
-            <td><%= faculty.office %></td>
-        </tr>
-        <tr>
-            <th>Phone</th>
-            <td><%= faculty.phone %></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><%= faculty.email %></td>
-        </tr>
-    </table>
-<%- include('partials/footer') %>
+<%- include('../partials/header') %>
+<body>
+    <h1>Faculty Details</h1>
+    <div class="faculty-card">
+        <img class="faculty-photo" src="/images/faculty/<%= faculty.slug %>.jpg" alt="<%= faculty.name %>">
+        <p><strong>Name:</strong> <strong><%= faculty.name %></strong></p>
+        <p><strong>Office:</strong> <%= faculty.office %></p>
+        <p><strong>Phone:</strong> <%= faculty.phone %></p>
+        <p><strong>Email:</strong> <%= faculty.email %></p>
+        <p><strong>Department:</strong> <%= faculty.department %></p>
+        <p><strong>Title:</strong> <%= faculty.title %></p>
+    </div>
+
+    <br>
+    <div class="navigation">
+        <p><a href="/faculty">&larr; Back to Faculty list</a></p>
+    </div>
+</body>
+  <%- include('../partials/footer') %>
