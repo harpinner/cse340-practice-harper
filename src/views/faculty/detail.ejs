@@ -1,28 +1,28 @@
-<%- include('partials/header') %>
-    <table>
-        <tr>
-            <th>Name</th>
-            <td><%= faculty.name %></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><%= faculty.email %></td>
-        </tr>
-        <tr>
-            <th>Department</th>
-            <td><%= faculty.department %></td>
-        </tr>
-        <tr>
-            <th>Office</th>
-            <td><%= faculty.office %></td>
-        </tr>
-        <tr>
-            <th>Phone</th>
-            <td><%= faculty.phone %></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td><%= faculty.email %></td>
-        </tr>
-    </table>
-<%- include('partials/footer') %>
+<%- include('../partials/header') %>
+<main>
+    <div class="faculty-profile">
+        <h1><%= faculty.name %></h1>
+        <p class="faculty-title"><%= faculty.title %></p>
+        <p class="faculty-department"><%= faculty.department %> Department</p>
+    </div>
+    
+    <div class="faculty-contact">
+        <h2>Contact Information</h2>
+        <div class="contact-details">
+            <div class="contact-item">
+                <strong>Office:</strong> <%= faculty.office %>
+            </div>
+            <div class="contact-item">
+                <strong>Phone:</strong> <a href="tel:<%= faculty.phone %>"><%= faculty.phone %></a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong> <a href="mailto:<%= faculty.email %>"><%= faculty.email %></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <p><a href="/faculty">&larr; Back to Faculty Directory</a></p>
+    </div>
+</main>
+<%- include('../partials/footer') %>

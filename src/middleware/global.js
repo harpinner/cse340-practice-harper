@@ -20,6 +20,13 @@ const getCurrentGreeting = () => {
  * Templates can access these values but are not required to use them.
  */
 const addLocalVariables = (req, res, next) => {
+    res.locals.styles = [];
+    
+    res.addStyle = function (styleTag) {
+        res.locals.styles.push(styleTag); // store the full tag as-is
+        return res;
+    };
+
     // Set current year for use in templates
     res.locals.currentYear = new Date().getFullYear();
 

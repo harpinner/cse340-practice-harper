@@ -1,11 +1,18 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import { setupDatabase, testConnection } from './src/models/setup.js';
 
 // Import MVC components
 import routes from './src/controllers/routes.js';
 import { addLocalVariables } from './src/middleware/global.js';
+
+console.log('Loaded environment variables:', process.env);
 
 /**
  * Server configuration
@@ -24,6 +31,10 @@ const app = express();
  * Configure Express
  */
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Allow Express to receive and process POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 

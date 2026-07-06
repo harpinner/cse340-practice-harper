@@ -1,0 +1,53 @@
+<%- include('../../partials/header') %>
+<main>
+    <h1><%= title %></h1>
+
+    <!-- TODO: Check if users array exists and has content using: if (users && users.length > 0) -->
+    <% if (users && users.length > 0) { %>
+
+        <div class="users-list">
+            <!-- TODO: Loop through users array with forEach -->
+            <!-- For each user in the loop, create this structure: -->
+            <% users.forEach(function(user) { %>
+
+                <div class="user-card">
+                    <div class="user-header">
+                        <!-- TODO: Add h3 with user's name -->
+                        <h3><%= user.name %></h3>
+                        <!-- TODO: Add span with class="user-id" showing: ID: user.id -->
+                        <span class="user-id">ID: <%= user.id %></span>
+                    </div>
+                    
+
+                    <div class="user-details">
+                        <div class="detail-item">
+                            <!-- TODO: Add div with class="label" containing: Email -->
+                            <div class="label">Email</div>
+                            <!-- TODO: Add div with class="value" containing: user.email -->
+                            <div class="value"><%= user.email %></div>
+                        </div>
+
+                        <div class="detail-item">
+                            <!-- TODO: Add div with class="label" containing: Registered -->
+                            <div class="label">Registered</div>
+                            <!-- TODO: Add div with class="value" containing formatted date -->
+                            <!-- HINT: Use new Date(user.created_at).toLocaleDateString() -->
+                            <div class="value"><%= new Date(user.created_at).toLocaleDateString() %></div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- TODO: End the forEach loop -->
+            <% }); %>
+        </div>
+
+    <!-- TODO: Add else clause -->
+    <% } else { %>
+        <!-- TODO: Add paragraph with class="no-users" -->
+        <p class="no-users">No users registered yet.</p>
+    <% } %>
+    <!-- TODO: Close the if/else block -->
+     
+
+</main>
+<%- include('../../partials/footer') %>

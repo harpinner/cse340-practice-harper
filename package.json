@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
+    "express-validator": "^7.3.2",
     "pg": "^8.21.0"
   },
   "type": "module",
@@ -16,7 +19,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@11.10.0",
   "devDependencies": {
     "nodemon": "^3.1.14",
     "ws": "^8.20.0"
